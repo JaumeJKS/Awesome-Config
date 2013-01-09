@@ -1,3 +1,5 @@
+-- /etc/xdg/awesome/rc.lua
+
 -- Standard awesome library
 require("awful")
 require("awful.autofocus")
