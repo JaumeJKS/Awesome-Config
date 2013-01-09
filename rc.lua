@@ -6,10 +6,11 @@ require("awful.rules")
 require("beautiful")
 -- Notification library
 require("naughty")
-require("obvious.battery")
+--Esto es para la batería del portatil, si lo necesitas me pides ;)
+--require("obvious.battery")
 -- Load Debian menu entries
 require("debian.menu")
-require("obvious.battery")
+--require("obvious.battery")
 --require("vicious")
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -81,13 +82,14 @@ end
 
 -- {{{ Menu
 -- Create a laucher widget and a main menu
+-- Submenú "Awesome"
 myawesomemenu = {
    { "Manual", terminal .. " -e man awesome" },
    { "Editar config", editor_cmd .. " " .. awesome.conffile },
    { "Reiniciar", awesome.restart },
    { "Salir", awesome.quit }
 }
-
+-- Menú principal
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
                                     { "Debian", debian.menu.Debian_menu.Debian },
                                     { "Google Chrome","/opt/google/chrome/google-chrome","/opt/google/chrome/product_logo_32.xpm"},
@@ -95,8 +97,8 @@ mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesom
                                     { "WIFI", "x-terminal-emulator -e ".."sudo /usr/bin/wicd-curses"},
                                     { "Metasploit", "x-terminal-emulator -e ".."sudo /usr/bin/msfconsole"},
                                     { "Abrir terminal", terminal },
-                                    { "Apagar", "x-terminal-emulator -e ".."sudo /usr/bin/poweroff" },
-                                    { "Reiniciar", "x-terminal-emulator -e ".."sudo /usr/bin/reboot" }
+                                    { "Apagar", "x-terminal-emulator -e ".."sudo /usr/bin/poweroff" }, -- Tengo que instalar systemd ;)
+                                    { "Reiniciar", "x-terminal-emulator -e ".."sudo /usr/bin/reboot" } -- Tengo que instalar systemd ;)
                                   }
                         })
 
@@ -352,6 +354,7 @@ awful.rules.rules = {
       properties = { floating = true } },
     -- Set Firefox to always map on tags number 2 of screen 1.
     -- { rule = { class = "Firefox" },
+    -- MARCOSCARS02 ;)
     --   properties = { tag = tags[1][2] } },
 }
 -- }}}
@@ -386,5 +389,6 @@ end)
 client.add_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.add_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
+--Arrancamos conky cuando awesome inicie
 awful.util.spawn_with_shell("conky")
 
